@@ -22,6 +22,7 @@ import ardublocklyserver.compilersettings
 # Server IP and PORT settings
 SERVER_IP = 'localhost'
 SERVER_PORT = 8000
+FILE_PATH = 'ardublockly'
 
 
 def open_browser(ip, port, file_path=''):
@@ -174,7 +175,7 @@ def main():
 
     print('\n======= Starting Server =======')
     if launch_browser:
-        open_browser(ip=SERVER_IP, port=SERVER_PORT)
+        open_browser(ip=SERVER_IP, port=SERVER_PORT, file_path=FILE_PATH)
 
     ardublocklyserver.server.launch_server(
             ip=SERVER_IP, port=SERVER_PORT, document_root_=server_root)

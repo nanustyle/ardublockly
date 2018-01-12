@@ -37,16 +37,9 @@ ArdublocklyServer.putJson = function(url, json, callback) {
  * @param {!function} cb Request callback function, takes a single input for a
  *     parsed JSON object.
  */
-ArdublocklyServer.sendRequest = function( url, method, contentType, jsonObjSend, cb) {
-
-
-
+ArdublocklyServer.sendRequest = function(
+    url, method, contentType, jsonObjSend, cb) {
   var request = ArdublocklyServer.createRequest();
-
-
-
-
-
 
   // The data received is JSON, so it needs to be converted into the right
   // format to be displayed in the page.
@@ -57,7 +50,8 @@ ArdublocklyServer.sendRequest = function( url, method, contentType, jsonObjSend,
         try {
           jsonObjReceived = JSON.parse(request.responseText);
         } catch(e) {
-   
+          console.error('Incorrectly formatted JSON data from ' + url);
+          throw e;
         }
         cb(jsonObjReceived);
       } else {
@@ -68,20 +62,15 @@ ArdublocklyServer.sendRequest = function( url, method, contentType, jsonObjSend,
   };
 
   try {
-
     request.open(method, url, true);
     request.setRequestHeader('Content-type', contentType);
     request.onreadystatechange = onReady;
-
     request.send(JSON.stringify(jsonObjSend));
-
-
   } catch (e) {
     // Nullify callback to indicate error
     cb(null);
     throw e;
   }
-  /**/
 };
 
 /** @return {XMLHttpRequest} An XML HTTP Request multi-browser compatible. */
@@ -348,6 +337,6 @@ ArdublocklyServer.setIdeOptions = function(ide_option, callback) {
  *     have one argument to receive the JSON response.
  */
 ArdublocklyServer.sendSketchToServer = function(code, callback) {
-
-  ArdublocklyServer.sendRequest('/bin/make.php', 'POST', 'application/json', {"sketch_code": code}, callback);
+  ArdublocklyServer.sendRequest(
+      '/code', 'POST', 'application/json', {"sketch_code": code}, callback);
 };

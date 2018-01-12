@@ -95,8 +95,6 @@ Ardublockly.changeIdeButtonsDesign = function(value) {
   var buttonLarge = document.getElementById('button_ide_large');
   var iconLarge = document.getElementById('button_ide_large_icon');
 
-
-
   if (value === 'upload') {
     buttonLeft.className =
         buttonLeft.className.replace(/arduino_\S+/, 'arduino_yellow');

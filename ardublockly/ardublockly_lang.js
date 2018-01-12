@@ -176,6 +176,7 @@ Ardublockly.changeLanguage = function() {
  */
 Ardublockly.getLocalStr = function(stringId) {
   var text = Ardublockly.LOCALISED_TEXT[stringId];
+
   if (!text) {
     console.log('Localised text string ID "' + stringId + '" does not exists!');
   }

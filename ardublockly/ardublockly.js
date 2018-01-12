@@ -15,8 +15,9 @@ Ardublockly.init = function() {
   Ardublockly.initLanguage();
 
   // Inject Blockly into content_blocks and fetch additional blocks
-  Ardublockly.injectBlockly(document.getElementById('content_blocks'),
-                            Ardublockly.TOOLBOX_XML, '../blockly/');
+  Ardublockly.injectBlockly(document.getElementById('content_blocks'),Ardublockly.TOOLBOX_XML, '../blockly/');
+  
+  
   Ardublockly.importExtraBlocks();
 
   Ardublockly.designJsInit();
@@ -25,12 +26,14 @@ Ardublockly.init = function() {
   Ardublockly.bindDesignEventListeners();
   Ardublockly.bindActionFunctions();
   Ardublockly.bindBlocklyEventListeners();
-
+/*
   // Hackish way to check if not running locally
   if (document.location.hostname != 'localhost') {
-    //Ardublockly.openNotConnectedModal();
-    //console.log('Offline app modal opened as non localhost host name found: ' + document.location.hostname)
+    Ardublockly.openNotConnectedModal();
+    console.log('Offline app modal opened as non localhost host name found: ' +
+                document.location.hostname)
   }
+  */
 };
 
 /** Binds functions to each of the buttons, nav links, and related. */
@@ -78,27 +81,10 @@ Ardublockly.bindActionFunctions = function() {
     $('.button-collapse').sideNav('hide');
   });
 
-
-
-
-
-
-
   // Floating buttons
   Ardublockly.bindClick_('button_ide_large', function() {
     Ardublockly.ideButtonLargeAction();
   });
-
-
-
-
-
-
-
-
-
-
-
   Ardublockly.bindClick_('button_ide_middle', function() {
       Ardublockly.ideButtonMiddleAction();
   });
@@ -142,25 +128,13 @@ Ardublockly.bindActionFunctions = function() {
 /** Sets the Ardublockly server IDE setting to upload and sends the code. */
 Ardublockly.ideSendUpload = function() {
   // Check if this is the currently selected option before edit sever setting
-
-
-  
   if (Ardublockly.ideButtonLargeAction !== Ardublockly.ideSendUpload) {
-
     Ardublockly.showExtraIdeButtons(false);
     Ardublockly.setIdeSettings(null, 'upload');
   }
- 
-
-
-
   Ardublockly.shortMessage(Ardublockly.getLocalStr('uploadingSketch'));
   Ardublockly.resetIdeOutputContent();
   Ardublockly.sendCode();
-
-
-
-/* */
 };
 
 /** Sets the Ardublockly server IDE setting to verify and sends the code. */
@@ -541,29 +515,22 @@ Ardublockly.setIdeSettings = function(e, preset) {
  * message from server).
  */
 Ardublockly.sendCode = function() {
-
-
-  //Ardublockly.largeIdeButtonSpinner(false);
+  Ardublockly.largeIdeButtonSpinner(true);
 
   /**
    * Receives the IDE data back to be displayed and stops spinner.
    * @param {element} jsonResponse JSON data coming back from the server.
    * @return {undefined} Might exit early if response is null.
    */
-
-
-
-  
   var sendCodeReturn = function(jsonObj) {
     Ardublockly.largeIdeButtonSpinner(false);
     if (jsonObj === null) return Ardublockly.openNotConnectedModal();
-    
     var dataBack = ArdublocklyServer.jsonToIdeModal(jsonObj);
     Ardublockly.arduinoIdeOutput(dataBack);
   };
 
-  ArdublocklyServer.sendSketchToServer(Ardublockly.generateArduino(), sendCodeReturn);
-   /**/
+  ArdublocklyServer.sendSketchToServer(
+      Ardublockly.generateArduino(), sendCodeReturn);
 };
 
 /** Populate the workspace blocks with the XML written in the XML text area. */

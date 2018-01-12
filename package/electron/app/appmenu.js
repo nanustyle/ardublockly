@@ -41,15 +41,15 @@ module.exports.setArdublocklyMenu = function(devMode) {
 
 var getMacMenuData = function() {
     return {
-        label: 'Ardublockly',
+        label: '이노로이드 브로코리',
         submenu: [
             {
-                label: 'About',
+                label: '정보',
                 click: functionNotImplemented
             }, {
                 type: 'separator'
             }, {
-                label: 'Preferences',
+                label: '설정',
                 accelerator: 'CmdOrCtrl+,',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
@@ -58,25 +58,25 @@ var getMacMenuData = function() {
             }, {
                 type: 'separator'
             }, {
-                label: 'Services',
+                label: '서비스',
                 submenu: []
             }, {
                 type: 'separator'
             }, {
-                label: 'Hide Ardublockly',
+                label: '가리기',
                 accelerator: 'Command+H',
                 selector: 'hide:'
             }, {
-                label: 'Hide Others',
+                label: '다른창 가리기',
                 accelerator: 'Command+Shift+H',
                 selector: 'hideOtherApplications:'
             }, {
-                label: 'Show All',
+                label: '모두 보이기',
                 selector: 'unhideAllApplications:'
             }, {
                 type: 'separator'
             }, {
-                label: 'Quit',
+                label: '종료',
                 accelerator: 'CmdOrCtrl+Q',
                 click: function() {
                     app.quit();
@@ -88,14 +88,14 @@ var getMacMenuData = function() {
 
 var getFileMenuData = function() {
     var fileMenu = {
-        label: 'File',
+        label: '파일',//File
         submenu: [
             {
-                label: 'New',
+                label: '새로만들기',//New
                 accelerator: 'CmdOrCtrl+N',
                 click: functionNotImplemented
             }, {
-                label: 'Open',
+                label: '열기',//Open
                 accelerator: 'CmdOrCtrl+O',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
@@ -103,14 +103,14 @@ var getFileMenuData = function() {
                             'Ardublockly.loadUserXmlFile()', true);
                 }
             }, {
-                label: 'Save Blocks as',
+                label: '블럭을 다른이름으로 저장',
                 accelerator: 'CmdOrCtrl+S',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.saveXmlFile()');
                 }
             }, {
-                label: 'Save Arduino Sketch as',
+                label: '스케치를 다른이름으로 저장',
                 accelerator: 'Shift+CmdOrCtrl+S',
                 click:  function() {
                     BrowserWindow.getFocusedWindow().webContents
@@ -126,7 +126,7 @@ var getFileMenuData = function() {
             {
                 type: 'separator'
             }, {
-                label: 'Quit',
+                label: '종료',//Quit
                 accelerator: 'CmdOrCtrl+Q',
                 click: function() {
                     app.quit();
@@ -140,17 +140,17 @@ var getFileMenuData = function() {
 
 var getEditMenuData = function() {
     var editMenud = {
-        label: 'Edit',
+        label: '편집',
         submenu: [
             {
-                label: 'Undo',
+                label: '뒤로',
                 accelerator: 'CmdOrCtrl+Z',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.workspace.undo(false)');
                 }
             }, {
-                label: 'Redo',
+                label: '앞으로',
                 accelerator: 'CmdOrCtrl+Y',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
@@ -159,35 +159,35 @@ var getEditMenuData = function() {
             }, {
                 type: 'separator'
             }, {
-                label: 'Cut',
+                label: '자르기',
                 accelerator: 'CmdOrCtrl+X',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.blocklyCut()');
                 }
             }, {
-                label: 'Copy',
+                label: '복사하기',
                 accelerator: 'CmdOrCtrl+C',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.blocklyCopy()');
                 }
             }, {
-                label: 'Paste',
+                label: '붙여넣기',
                 accelerator: 'CmdOrCtrl+V',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.blocklyPaste()');
                 }
             }, {
-                label: 'Delete',
+                label: '지우기',
                 accelerator: 'Delete',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.blocklyDelete()');
                 }
             }, {
-                label: 'Delete All',
+                label: '모두 지우기',
                 accelerator: 'Delete',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
@@ -203,7 +203,7 @@ var getEditMenuData = function() {
             {
                 type: 'separator'
             }, {
-                label: 'Preferences',
+                label: '설정',
                 accelerator: 'CmdOrCtrl+,',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
@@ -218,10 +218,10 @@ var getEditMenuData = function() {
 
 var getExamplesMenuData = function() {
     return {
-        label: 'Examples',
+        label: '예제',
         submenu: [
             {
-                label: 'Blinky',
+                label: 'LED Blink',
                 click: function() {
                      BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript(
@@ -267,24 +267,24 @@ var getExamplesMenuData = function() {
 
 var getProgramMenuData = function() {
     return {
-        label: 'Program',
+        label: '프로그램',
         submenu: [
             {
-                label: 'Open sketch in IDE',
+                label: '통합환경에서 열기',
                 //accelerator: 'CmdOrCtrl+O',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.ideSendOpen()');
                 }
             }, {
-                label: 'Verify',
+                label: '검사',
                 accelerator: 'CmdOrCtrl+R',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
                         .executeJavaScript('Ardublockly.ideSendVerify()');
                 }
             }, {
-                label: 'Upload program',
+                label: '업로드',
                 accelerator: 'CmdOrCtrl+U',
                 click: function() {
                     BrowserWindow.getFocusedWindow().webContents
@@ -297,20 +297,20 @@ var getProgramMenuData = function() {
 
 var getWindowMenuData = function() {
     return {
-        label: 'Window',
+        label: '윈도우',
         submenu: [
             {
-                label: 'Minimize',
+                label: '최소화',
                 accelerator: 'Command+M',
                 selector: 'performMiniaturize:'
             }, {
-                label: 'Close',
+                label: '닫기',
                 accelerator: 'Command+W',
                 selector: 'performClose:'
            }, {
                 type: 'separator'
             }, {
-                label: 'Bring All to Front',
+                label: '모두 불러오기',
                 selector: 'arrangeInFront:'
             }
         ]
@@ -319,42 +319,42 @@ var getWindowMenuData = function() {
 
 var getHelpMenuData = function() {
     return {
-        label: 'Help',
+        label: '도움말',
         submenu: [
             {
-                label: 'Quick Start',
+                label: '빠른시작',
                 click: function() {
                     shell.openExternal(
                         'http://localhost:8000/docs/Quick-Start');
                 }
             }, {
-                label: 'Manual',
+                label: '매뉴얼',
                 click: function() {
                     shell.openExternal('http://localhost:8000/docs/');
                 }
             }, {
                 type: 'separator'
             }, {
-                label: 'Website',
+                label: '이노로이드 홈페이지',
                 click: function() {
-                    shell.openExternal('http://ardublockly.embeddedlog.com');
+                    shell.openExternal('http://www.inoroid.com');
                 }
             }, {
-                label: 'Source code',
+                label: '소스코드',
                 click: function() {
                     shell.openExternal(
                         'https://github.com/carlosperate/ardublockly');
                 }
             }, {
-                label: 'Report a bug',
+                label: '오류신고',
                 click: function() {
                     shell.openExternal(
-                        'https://github.com/carlosperate/ardublockly/issues');
+                        'http://www.inoroid.com');
                 }
             }, {
                 type: 'separator'
             },  {
-                label: 'About',
+                label: '프로그램 정보',
                 click: function() {
                     shell.openExternal('http://localhost:8000/docs/About');
                 }
@@ -365,7 +365,7 @@ var getHelpMenuData = function() {
 
 var getDevMenuData = function() {
     return {
-        label: 'Development',
+        label: '개발모드',
         submenu: [
             {
                 label: 'Reload',

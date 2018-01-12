@@ -469,6 +469,11 @@ Blockly.Blocks.lists_split = {
 };
 Blockly.Blocks.logic = {};
 Blockly.Blocks.logic.HUE = 210;
+
+
+
+
+
 Blockly.Blocks.controls_if = {
     init: function() {
         this.setHelpUrl(Blockly.Msg.CONTROLS_IF_HELPURL);
@@ -568,6 +573,9 @@ Blockly.Blocks.controls_if = {
         this.elseCount_ && this.appendStatementInput("ELSE").appendField(Blockly.Msg.CONTROLS_IF_MSG_ELSE)
     }
 };
+
+
+
 Blockly.Blocks.controls_if_if = {
     init: function() {
         this.setColour(Blockly.Blocks.logic.HUE);
@@ -596,6 +604,50 @@ Blockly.Blocks.controls_if_else = {
         this.contextMenu = !1
     }
 };
+
+Blockly.Blocks.test = {
+
+    init: function() {
+        var a = this.RTL ? [
+            ["=", "EQ"],
+            ["\u2260", "NEQ"],
+            [">", "LT"],
+            ["\u2265", "LTE"],
+            ["<", "GT"],
+            ["\u2264", "GTE"]
+        ] : [
+            ["=", "EQ"],
+            ["\u2260", "NEQ"],
+            ["<", "LT"],
+            ["\u2264", "LTE"],
+            [">", "GT"],
+            ["\u2265", "GTE"]
+        ];
+        this.setHelpUrl(Blockly.Msg.LOGIC_COMPARE_HELPURL);
+        this.setColour(Blockly.Blocks.logic.HUE);
+        this.setOutput(!0, Blockly.Types.BOOLEAN.output);
+        this.appendValueInput("A");
+        this.appendValueInput("B").appendField(new Blockly.FieldDropdown(a), "OP");
+        this.setInputsInline(!0);
+        var b =
+            this;
+        this.setTooltip(function() {
+            var a = b.getFieldValue("OP");
+            return {
+                EQ: Blockly.Msg.LOGIC_COMPARE_TOOLTIP_EQ,
+                NEQ: Blockly.Msg.LOGIC_COMPARE_TOOLTIP_NEQ,
+                LT: Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LT,
+                LTE: Blockly.Msg.LOGIC_COMPARE_TOOLTIP_LTE,
+                GT: Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GT,
+                GTE: Blockly.Msg.LOGIC_COMPARE_TOOLTIP_GTE
+            }[a]
+        });
+        this.prevBlocks_ = [null, null]
+    }
+
+}
+
+
 Blockly.Blocks.logic_compare = {
     init: function() {
         var a = this.RTL ? [
@@ -797,6 +849,25 @@ Blockly.Blocks.controls_repeat = {
         this.getField("TIMES").setValidator(Blockly.FieldTextInput.nonnegativeIntegerValidator)
     }
 };
+
+
+Blockly.Blocks.controls_dowhile = {
+
+    init: function() {
+
+        var a = [
+            [Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_DOWHILE, "DO WHILE"]
+        ];
+        this.setHelpUrl(Blockly.Msg.CONTROLS_WHILEUNTIL_HELPURL);
+        this.setColour(Blockly.Blocks.loops.HUE);
+        
+        this.appendValueInput("BOOL").setCheck(Blockly.Types.BOOLEAN.checkList).appendField(new Blockly.FieldDropdown(a), "MODE");
+
+
+    }
+
+}
+
 Blockly.Blocks.controls_whileUntil = {
     init: function() {
         var a = [
@@ -805,10 +876,12 @@ Blockly.Blocks.controls_whileUntil = {
         ];
         this.setHelpUrl(Blockly.Msg.CONTROLS_WHILEUNTIL_HELPURL);
         this.setColour(Blockly.Blocks.loops.HUE);
+        
         this.appendValueInput("BOOL").setCheck(Blockly.Types.BOOLEAN.checkList).appendField(new Blockly.FieldDropdown(a), "MODE");
         this.appendStatementInput("DO").appendField(Blockly.Msg.CONTROLS_WHILEUNTIL_INPUT_DO);
         this.setPreviousStatement(!0);
         this.setNextStatement(!0);
+
         var b = this;
         this.setTooltip(function() {
             var a = b.getFieldValue("MODE");
@@ -819,6 +892,11 @@ Blockly.Blocks.controls_whileUntil = {
         })
     }
 };
+
+
+
+
+
 Blockly.Blocks.controls_for = {
     init: function() {
         this.jsonInit({

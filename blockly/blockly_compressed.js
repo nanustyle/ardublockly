@@ -12819,6 +12819,7 @@ Blockly.ConnectionDB.init = function(a) {
 // Copyright 2016 Google Inc.  Apache License 2.0
 Blockly.Options = function(a) {
     var b = !!a.readOnly;
+
     if (b) var c = null,
         d = !1,
         e = !1,
@@ -12840,6 +12841,7 @@ Blockly.Options = function(a) {
     void 0 === n && (n = !0);
     var r = "https://blockly-demo.appspot.com/static/media/";
     a.media ? r = a.media : a.path && (r = a.path + "media/");
+
     this.RTL = l;
     this.collapse = f;
     this.comments = g;
@@ -17932,6 +17934,7 @@ Blockly.TOOLBOX_AT_LEFT = 2;
 Blockly.TOOLBOX_AT_RIGHT = 3;
 Blockly.inject = function(a, b) {
     goog.isString(a) && (a = document.getElementById(a) || document.querySelector(a));
+
     if (!goog.dom.contains(document, a)) throw "Error: container is not in current document.";
     var c = new Blockly.Options(b || {}),
         d = Blockly.createDom_(a, c),
@@ -17943,6 +17946,7 @@ Blockly.inject = function(a, b) {
 };
 Blockly.createDom_ = function(a, b) {
     a.setAttribute("dir", "LTR");
+    
     goog.ui.Component.setDefaultRightToLeft(b.RTL);
     Blockly.Css.inject(b.hasCss, b.pathToMedia);
     var c = Blockly.createSvgElement("svg", {

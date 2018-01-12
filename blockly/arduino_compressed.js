@@ -680,11 +680,42 @@ Blockly.Arduino.lists_indexOf = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.lists_getIndex = Blockly.Arduino.noGeneratorCodeInline;
 Blockly.Arduino.lists_setIndex = Blockly.Arduino.noGeneratorCodeLine;
 Blockly.Arduino.logic = {};
+
+
+
+
+
 Blockly.Arduino.controls_if = function(a) {
-    for (var b = 0, c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e = "if (" + c + ") {\n" + d + "}", b = 1; b <= a.elseifCount_; b++) c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e += " else if (" + c + ") {\n" + d + "}";
+    for (var b = 0, c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e = "if (" + c + ") {\n" + d + "}", b = 1; b <= a.elseifCount_; b++)
+     c = Blockly.Arduino.valueToCode(a, "IF" + b, Blockly.Arduino.ORDER_NONE) || "false", d = Blockly.Arduino.statementToCode(a, "DO" + b), e += " else if (" + c + ") {\n" + d + "}";
     a.elseCount_ && (d = Blockly.Arduino.statementToCode(a, "ELSE"), e += " else {\n" + d + "}");
     return e + "\n"
 };
+
+Blockly.Arduino.test = function(a) {
+    var b = {
+            EQ: "==",
+            NEQ: "!=",
+            LT: "<",
+            LTE: "<=",
+            GT: ">",
+            GTE: ">="
+        }[a.getFieldValue("OP")],
+        c = "==" == b || "!=" == b ? Blockly.Arduino.ORDER_EQUALITY : Blockly.Arduino.ORDER_RELATIONAL,
+        d = Blockly.Arduino.valueToCode(a, "A", c) || "0";
+
+    a = Blockly.Arduino.valueToCode(a, "B", c) || "0";
+
+    return [d + " " + b + " " + a, c]
+
+};
+
+Blockly.Arduino.controls_if_if = function(){
+
+    return ["if(" + ")", ""]
+};
+
+
 Blockly.Arduino.logic_compare = function(a) {
     var b = {
             EQ: "==",
@@ -699,6 +730,9 @@ Blockly.Arduino.logic_compare = function(a) {
     a = Blockly.Arduino.valueToCode(a, "B", c) || "0";
     return [d + " " + b + " " + a, c]
 };
+
+
+
 Blockly.Arduino.logic_operation = function(a) {
     var b = "AND" == a.getFieldValue("OP") ? "&&" : "||",
         c = "&&" == b ? Blockly.Arduino.ORDER_LOGICAL_AND : Blockly.Arduino.ORDER_LOGICAL_OR,
@@ -746,6 +780,18 @@ Blockly.Arduino.controls_repeat_ext = function(a) {
     return a + ("for (int " + d + " = 0; " + d + " < " +
         e + "; " + d + "++) {\n" + c + "}\n")
 };
+
+
+Blockly.Arduino.controls_dowhile = function(a){
+
+    alert(a.getFieldValue("MODE"));
+
+
+    return "do{}while()"
+}
+
+
+
 Blockly.Arduino.controls_whileUntil = function(a) {
     var b = "UNTIL" == a.getFieldValue("MODE"),
         c = Blockly.Arduino.valueToCode(a, "BOOL", b ? Blockly.Arduino.ORDER_LOGICAL_OR : Blockly.Arduino.ORDER_NONE) || "false",
@@ -754,6 +800,10 @@ Blockly.Arduino.controls_whileUntil = function(a) {
     b && (c.match(/^\w+$/) || (c = "(" + c + ")"), c = "!" + c);
     return "while (" + c + ") {\n" + d + "}\n"
 };
+
+
+
+
 Blockly.Arduino.controls_for = function(a) {
     var b = Blockly.Arduino.variableDB_.getName(a.getFieldValue("VAR"), Blockly.Variables.NAME_TYPE),
         c = Blockly.Arduino.valueToCode(a, "FROM", Blockly.Arduino.ORDER_ASSIGNMENT) || "0",
@@ -771,6 +821,11 @@ Blockly.Arduino.controls_for = function(a) {
         "_inc", Blockly.Variables.NAME_TYPE), a += "int " + d + " = ", a = Blockly.isNumber(e) ? a + (Math.abs(e) + ";\n") : a + ("abs(" + e + ");\n"), a = a + ("if (" + g + " > " + c + ") {\n") + (Blockly.Arduino.INDENT + d + " = -" + d + ";\n"), a += "}\n", a += "for (" + b + " = " + g + ";\n     " + d + " >= 0 ? " + b + " <= " + c + " : " + b + " >= " + c + ";\n     " + b + " += " + d + ") {\n" + f + "}\n";
     return a
 };
+
+
+
+
+
 Blockly.Arduino.controls_forEach = Blockly.Arduino.noGeneratorCodeLine;
 Blockly.Arduino.controls_flow_statements = function(a) {
     switch (a.getFieldValue("FLOW")) {
@@ -781,6 +836,17 @@ Blockly.Arduino.controls_flow_statements = function(a) {
     }
     throw "Unknown flow statement.";
 };
+
+
+
+
+
+
+
+
+
+
+
 Blockly.Arduino.map = {};
 Blockly.Arduino.base_map = function(a) {
     var b = Blockly.Arduino.valueToCode(a, "NUM", Blockly.Arduino.ORDER_NONE) || "0";

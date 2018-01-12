@@ -57,9 +57,13 @@ Blockly.Msg.CONTROLS_REPEAT_HELPURL = "https://en.wikipedia.org/wiki/For_loop";
 Blockly.Msg.CONTROLS_REPEAT_INPUT_DO = "do";
 Blockly.Msg.CONTROLS_REPEAT_TITLE = "repeat %1 times";
 Blockly.Msg.CONTROLS_REPEAT_TOOLTIP = "Do some statements several times.";
+
 Blockly.Msg.CONTROLS_WHILEUNTIL_HELPURL = "https://github.com/google/blockly/wiki/Loops#repeat";
 Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_UNTIL = "repeat until";
 Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "repeat while";
+Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_DOWHILE = "do while";
+
+
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "While a value is false, then do some statements.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "While a value is true, then do some statements.";
 Blockly.Msg.DELETE_ALL_BLOCKS = "Delete all %1 blocks?";

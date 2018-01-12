@@ -59,7 +59,7 @@ app.on('ready', function() {
     mainWindow = createWindow('main', {
         width: 1200,
         height: 765,
-        title: 'Ardublockly',
+        title: '이노로이드 브로코리',
         transparent: false,
         backgroundColor: '#EEEEEE',
         frame: true,

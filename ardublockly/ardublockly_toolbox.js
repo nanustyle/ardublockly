@@ -21,6 +21,21 @@ Ardublockly.TOOLBOX_XML =
 '    <block type="logic_null"></block>' +
 '    <block type="logic_ternary"></block>' +
 '  </category>' +
+
+
+
+
+
+'  <sep></sep>' +
+'  <category id="catCar" name="Car">' +
+'    <block type="test"></block>' +
+'    <block type="stepper_step"></block>' +
+'  </category>' +
+
+
+
+
+
 '  <sep></sep>' +
 '  <category id="catLoops" name="Loops">' +
 '    <block type="controls_repeat_ext">' +
@@ -30,7 +45,9 @@ Ardublockly.TOOLBOX_XML =
 '        </block>' +
 '      </value>' +
 '    </block>' +
+'    <block type="controls_dowhile"></block>' +
 '    <block type="controls_whileUntil"></block>' +
+
 '    <block type="controls_for">' +
 '      <value name="FROM">' +
 '        <block type="math_number">' +
@@ -48,8 +65,14 @@ Ardublockly.TOOLBOX_XML =
 '        </block>' +
 '      </value>' +
 '    </block>' +
+
 '    <block type="controls_flow_statements"></block>' +
+
 '  </category>' +
+
+
+
+
 '  <sep></sep>' +
 '  <category id="catMath" name="Math">' +
 '    <block type="math_number"></block>' +
